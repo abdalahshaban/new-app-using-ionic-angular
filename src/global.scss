@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -24,3 +24,29 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400&display=swap");
+$flag-icon-css-path: "~flag-icon-css/flags" !default;
+@import "~flag-icon-css/sass/flag-icon";
+
+* {
+    font-family: "Josefin Sans", sans-serif;
+}
+ion-select {
+    padding: 3px;
+    margin: 3px;
+    margin-bottom: 0;
+    max-width: 100% !important;
+    // width: 55%;
+}
+
+ion-select::part(icon) {
+    display: none !important;
+}
+// ion-select::part(icon) {
+//     color: #ffa612 !important;
+// }
+
+ion-toolbar,
+ion-item {
+    padding: 0 !important;
+}

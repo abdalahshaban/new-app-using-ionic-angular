@@ -1,5 +1,7 @@
 {
   "name": "NEWS-APP-with-Ionic-Angular",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

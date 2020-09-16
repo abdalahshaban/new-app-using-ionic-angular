@@ -1,20 +1,64 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-item slot="start" style="width: 44%;">
+      <span class="flag-icon flag-icon-{{countrySelect.toLowerCase()}} flag-icon-squared"></span>
+      <ion-select [interfaceOptions]="customAlertOptions" interface="alert" [(ngModel)]="countrySelect"
+        (ionChange)="getByCountry($event)">
+        <ion-select-option *ngFor="let item of countriesCode" value="{{item}}">{{getName(item)}}
+        </ion-select-option>
+      </ion-select>
+
+    </ion-item>
+
+    <ion-title class="ion-text-center">News</ion-title>
+    <ion-item slot="end">
+      <ion-select interface="alert" [(ngModel)]="categorySelect" (ionChange)="getByCategory($event)">
+        <ion-select-option *ngFor="let item of categoryData|keyvalue" value="{{item.value}}">{{item.key}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div *ngIf="!showLoadingCard">
+    <ion-card *ngFor="let article of articles" (click)="openBlank(article.url)">
+      <img style="width: 100%;" src="{{article?.urlToImage}}">
+      <ion-card-header>
+        <ion-card-subtitle>{{article?.publishedAt|date}}</ion-card-subtitle>
+        <ion-card-title>{{article?.title}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{article.description}}
+      </ion-card-content>
+    </ion-card>
+    <div *ngIf="(pageNo === pageCount)" style="text-align: center;color: #cc0b0e;padding: 10px;">
+      <ion-label> No more Articles</ion-label>
+    </div>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-infinite-scroll threshold="10px" (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content loadingSpinner="lines">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
   </div>
+  <div *ngIf="showLoadingCard">
+    <ion-card *ngFor="let article of [1,2,3,4,5]">
+      <ion-skeleton-text animated style="width: 100%;height: 20vh;"></ion-skeleton-text>
+      <ion-card-header>
+        <ion-card-subtitle>
+          <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+        </ion-card-subtitle>
+        <ion-card-title>
+          <ion-skeleton-text animated style="width: 90%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 90%"></ion-skeleton-text>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-skeleton-text animated style="width: 95%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 95%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 95%"></ion-skeleton-text>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
 </ion-content>
