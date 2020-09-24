@@ -4,8 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { NewsData } from 'src/interface/news';
 
-const API_URL = environment.API_URL;
-const API_KEY = environment.API_key
+const API_URL = "http://newsapi.org/v2/";
+const API_KEY = "bffd1623c2d4415d891c23610ea16ebc";
 
 @Injectable({
   providedIn: 'root'
