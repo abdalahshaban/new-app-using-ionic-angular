@@ -1,4 +1,4 @@
-# StorageManagementApplication
+# ionic News Application
 ionic News APP
 
 :paperclip: [apk](src/assets/newsApp.apk)
